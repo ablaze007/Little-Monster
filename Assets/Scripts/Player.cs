@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     //Handlers
     private Rigidbody2D _rigid;
+    private Animator _anim;
 
     [SerializeField]
     private float jumpforce = 2.0f;
@@ -16,7 +17,8 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _rigid = this.GetComponent<Rigidbody2D>();    
+        _rigid = this.GetComponent<Rigidbody2D>();
+        _anim = this.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -30,6 +32,7 @@ public class Player : MonoBehaviour
         if (isJumping)
             return;
         isJumping = true;
+        _anim.SetTrigger("Jump");
         _rigid.velocity = new Vector2(_rigid.velocity.x, jumpforce);
         StartCoroutine(JumpResetRoutine());
     }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Monster : MonoBehaviour, IDestroyable
 {
     //Handlers
     private Rigidbody2D _rigid;
@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float jumpResetTime = 0.25f;
     private bool isJumping = false;
+    private bool isDead = false;
 
     // Start is called before the first frame update
     void Start()
@@ -27,14 +28,26 @@ public class Player : MonoBehaviour
           
     }
 
-    public void jump()
+    public void Jump()
     {
-        if (isJumping)
+        if (isJumping || isDead)
             return;
+        //Debug.Log("Jumping " + Time.deltaTime);
         isJumping = true;
         _anim.SetTrigger("Jump");
         _rigid.velocity = new Vector2(_rigid.velocity.x, jumpforce);
         StartCoroutine(JumpResetRoutine());
+    }
+
+    public void Death()
+    {
+        Debug.Log("Monster is Dead!");
+        isDead = true;
+    }
+
+    public void IDestroy()
+    {
+        Destroy(this.gameObject);
     }
 
     IEnumerator JumpResetRoutine()
@@ -42,5 +55,4 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(jumpResetTime);
         isJumping = false;
     }
-
 }

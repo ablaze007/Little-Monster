@@ -9,9 +9,9 @@ public class Monster : MonoBehaviour, IDestroyable
     private Animator _anim;
 
     [SerializeField]
-    private float jumpforce = 2.0f;
+    private float jumpforce = 5.0f;
     [SerializeField]
-    private float jumpResetTime = 0.25f;
+    private float jumpResetTime = 0.1f;
     private bool isJumping = false;
     private bool isDead = false;
 
@@ -25,7 +25,7 @@ public class Monster : MonoBehaviour, IDestroyable
     // Update is called once per frame
     void Update()
     {
-          
+ 
     }
 
     public void Jump()

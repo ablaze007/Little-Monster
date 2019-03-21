@@ -32,6 +32,7 @@ public class Monster : MonoBehaviour, IDestroyable
     {
         if (isJumping || isDead)
             return;
+
         //Debug.Log("Jumping " + Time.deltaTime);
         isJumping = true;
         _anim.SetTrigger("Jump");

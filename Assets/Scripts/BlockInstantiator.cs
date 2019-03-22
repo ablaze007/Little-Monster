@@ -22,7 +22,7 @@ public class BlockInstantiator: MonoBehaviour
     public Transform blockRed2Transform;
     public Transform blockRed3Transform;
 
-    private float minimumCoolDownTime = 1.0f;
+    private float minimumCoolDownTime = 0.775f;
     private int tankSpawnTime = 10;
     private float tankSpawnWaitTime = 10.0f;
     private int previousTankSpawnTime;
@@ -94,16 +94,19 @@ public class BlockInstantiator: MonoBehaviour
             pauseGreen = true;
         if (R > 0.35)
             pauseRed = true;
+
         yield return new WaitForSeconds(tankSpawnWaitTime);
         if (R < 0.65)
         {
-            pauseGreen = false;
             Instantiate(tank2);
         }
         if (R > 0.35)
         {
-            pauseRed = false;
             Instantiate(tank);
         }
+
+        yield return new WaitForSeconds(1.5f);
+        pauseGreen = false;
+        pauseRed = false;
     }
 }

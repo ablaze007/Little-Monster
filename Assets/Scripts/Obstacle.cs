@@ -33,7 +33,6 @@ public class Obstacle : MonoBehaviour, IDestroyable
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log("obstacle collision");
         if (other.gameObject.tag == "Player" && monster != null)
         {
             other.gameObject.GetComponent<Monster>().Death();

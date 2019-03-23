@@ -6,9 +6,9 @@ public class BlockInstantiator: MonoBehaviour
 {
     private float timer;
 
-    private float blockTimer1 = 0.50f;
-    private float blockTimer2 = 0.16f;
-    private float blockTimer3 = 0.06f;
+    private float blockTimer1 = 0.85f;
+    private float blockTimer2 = 0.45f;
+    private float blockTimer3 = 0.20f;
 
     public GameObject blockGreen;
     public GameObject blockRed;
@@ -51,12 +51,20 @@ public class BlockInstantiator: MonoBehaviour
             StartCoroutine(TankInstantiateRoutine());
         }
 
-        if(HighScore.GetScore() > 100 && levelUp)
+        if(HighScore.GetScore() > 100 && HighScore.GetScore() < 300 && levelUp)
         {
             levelUp = false;
-            blockTimer1 *= 1.20f;
-            blockTimer2 *= 1.25f;
+            blockTimer1 *= 1.30f;
             blockTimer2 *= 1.30f;
+            blockTimer2 *= 1.30f;
+        }
+
+        if(HighScore.GetScore() > 300 && !levelUp)
+        {
+            levelUp = true;
+            blockTimer1 *= 1.20f;
+            blockTimer2 *= 1.20f;
+            blockTimer3 *= 1.20f;
         }
     }
 

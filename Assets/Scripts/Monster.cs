@@ -45,14 +45,17 @@ public class Monster : MonoBehaviour, IDestroyable
         //Debug.Log("Jumping " + Time.deltaTime);
         isJumping = true;
         _anim.SetTrigger("Jump");
+        soundManagerScript.PlaySound("jump");
         _rigid.velocity = new Vector2(_rigid.velocity.x, jumpforce);
         StartCoroutine(JumpResetRoutine());
     }
 
     public void Death()
     {
-        Debug.Log("Monster is Dead!");
+        if (isDead)
+            return;
         isDead = true;
+        this.GetComponent<CapsuleCollider2D>().enabled = false;
         StartCoroutine(DeathRoutine());
     }
 
@@ -70,10 +73,13 @@ public class Monster : MonoBehaviour, IDestroyable
     IEnumerator DeathRoutine()
     {
         deadEye.SetActive(true);
+        soundManagerScript.StopMusic();
+        soundManagerScript.PlaySound("gameOver");
+
         scoreScreenText.text = "Score - " + HighScore.GetScore();
         scoreScreen.SetActive(true);
         HighScore.UpdateScore();
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(3.5f);
         gameManager.GetComponent<GameManager>().EndGame();
     }
 }

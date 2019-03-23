@@ -17,8 +17,8 @@ public class Tank: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        coolDownTime = Random.Range(1.75f, 3.25f);
-        StartCoroutine(CoolDownRoutine(0.5f));
+        coolDownTime = Random.Range(1.25f, 3.75f);
+        StartCoroutine(CoolDownRoutine(0.25f));
     }
 
     // Update is called once per frame

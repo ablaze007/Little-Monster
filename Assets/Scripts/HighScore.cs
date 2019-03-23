@@ -18,6 +18,10 @@ public class HighScore : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        _instance = this;
+    }
 
     public static int currentScore;
 

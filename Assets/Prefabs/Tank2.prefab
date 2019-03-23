@@ -71,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 4e51ad423f8d4b042aedde8a727ffd1d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -97,7 +97,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToInstantiate: {fileID: 4464773726953073498, guid: bfa8330030acc1d4a9ab2f7c65f4d622,
     type: 3}
-  coolDownTime: 3
   instantiationPointDown: {fileID: 4165325078596092606, guid: 5c8a57fffed94074f905a7bfccdebd95,
     type: 3}
   instantiationPointUp: {fileID: 2935013677575810185, guid: d10180189c522b349844c2fd2697fe4c,

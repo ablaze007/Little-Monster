@@ -7,8 +7,8 @@ public class BlockInstantiator: MonoBehaviour
     private float timer;
 
     private float blockTimer1 = 0.50f;
-    private float blockTimer2 = 0.15f;
-    private float blockTimer3 = 0.05f;
+    private float blockTimer2 = 0.16f;
+    private float blockTimer3 = 0.06f;
 
     public GameObject blockGreen;
     public GameObject blockRed;
@@ -22,13 +22,14 @@ public class BlockInstantiator: MonoBehaviour
     public Transform blockRed2Transform;
     public Transform blockRed3Transform;
 
-    private float minimumCoolDownTime = 0.775f;
+    private float minimumCoolDownTime = 0.66f;
     private int tankSpawnTime = 10;
     private float tankSpawnWaitTime = 10.0f;
     private int previousTankSpawnTime;
 
     private bool pauseGreen = false;
     private bool pauseRed = false;
+    private bool levelUp = true;
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +51,13 @@ public class BlockInstantiator: MonoBehaviour
             StartCoroutine(TankInstantiateRoutine());
         }
 
+        if(HighScore.GetScore() > 100 && levelUp)
+        {
+            levelUp = false;
+            blockTimer1 *= 1.20f;
+            blockTimer2 *= 1.25f;
+            blockTimer2 *= 1.30f;
+        }
     }
 
     private void instantiateBlocks(int option) //option: 1-green, 2-red

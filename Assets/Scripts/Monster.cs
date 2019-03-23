@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Monster : MonoBehaviour, IDestroyable
 {
@@ -8,12 +9,19 @@ public class Monster : MonoBehaviour, IDestroyable
     private Rigidbody2D _rigid;
     private Animator _anim;
 
+    public GameObject scoreScreen;
+    public GameObject gameManager;
+    public GameObject deadEye;
+
+    public Text scoreText;
+    public Text scoreScreenText;
+
     [SerializeField]
     private float jumpforce = 5.0f;
     [SerializeField]
     private float jumpResetTime = 0.1f;
     private bool isJumping = false;
-    private bool isDead = false;
+    public bool isDead = false;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +33,8 @@ public class Monster : MonoBehaviour, IDestroyable
     // Update is called once per frame
     void Update()
     {
- 
+        if(!isDead)
+            scoreText.text = "Score - " + HighScore.GetScore();
     }
 
     public void Jump()
@@ -44,6 +53,7 @@ public class Monster : MonoBehaviour, IDestroyable
     {
         Debug.Log("Monster is Dead!");
         isDead = true;
+        StartCoroutine(DeathRoutine());
     }
 
     public void IDestroy()
@@ -55,5 +65,15 @@ public class Monster : MonoBehaviour, IDestroyable
     {
         yield return new WaitForSeconds(jumpResetTime);
         isJumping = false;
+    }
+
+    IEnumerator DeathRoutine()
+    {
+        deadEye.SetActive(true);
+        scoreScreenText.text = "Score - " + HighScore.GetScore();
+        scoreScreen.SetActive(true);
+        HighScore.UpdateScore();
+        yield return new WaitForSeconds(3.0f);
+        gameManager.GetComponent<GameManager>().EndGame();
     }
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Destroyer : MonoBehaviour
 {
+    public GameObject monster;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,12 +20,14 @@ public class Destroyer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Destroyer Triggered!");
+        //Debug.Log("Destroyer Triggered!");
         IDestroyable other = collision.GetComponent<IDestroyable>();
 
-        if(other!=null)
+        if(other!=null && collision.tag != "Player")
         {
             other.IDestroy();
+            if(monster!=null && !monster.GetComponent<Monster>().isDead)
+                HighScore.AddScore();
         }
     }
 }

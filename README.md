@@ -1,8 +1,8 @@
 # Little-Monster
-- A mini game based on Flappy Bird-
+"A mini game based on Flappy Bird"
 
+Developer - Bhuwan KC
 First publication - 03.23.2019
-Developed by - Bhuwan KC
 
 Platforms - Windows & Android
 Game Engine - Unity

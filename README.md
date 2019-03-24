@@ -1,19 +1,19 @@
 # Little-Monster
 "A mini game based on Flappy Bird"
 
-Developer - Bhuwan KC
+Developer - Bhuwan KC <br/>
 First publication - 03.23.2019
 
-Platforms - Windows & Android
-Game Engine - Unity
-Language - C#
-Graphics - Inkscape 
+Platforms - Windows & Android <br/>
+Game Engine - Unity <br/>
+Language - C# <br/>
+Graphics - Inkscape <br/> 
 
 Sound - Bensound.com
 
 -----------------------------------------------------------------
 MIT License
-Copyright <2019> <Bhuwan KC>
+Copyright <2019>  <Bhuwan KC>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

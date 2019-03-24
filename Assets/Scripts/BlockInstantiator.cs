@@ -6,9 +6,9 @@ public class BlockInstantiator: MonoBehaviour
 {
     private float timer;
 
-    private float blockTimer1 = 0.85f;
-    private float blockTimer2 = 0.45f;
-    private float blockTimer3 = 0.20f;
+    private float blockTimer1 = 0.75f;
+    private float blockTimer2 = 0.25f;
+    private float blockTimer3 = 0.05f;
 
     public GameObject blockGreen;
     public GameObject blockRed;
@@ -22,20 +22,19 @@ public class BlockInstantiator: MonoBehaviour
     public Transform blockRed2Transform;
     public Transform blockRed3Transform;
 
-    private float minimumCoolDownTime = 0.66f;
-    private int tankSpawnTime = 10;
-    private float tankSpawnWaitTime = 10.0f;
-    private int previousTankSpawnTime;
+    private float minimumCoolDownTime = 0.575f;
+    private float tankSpawnWaitTime = 7.5f;
+    private int tankTime = 20;
 
     private bool pauseGreen = false;
     private bool pauseRed = false;
     private bool levelUp = true;
+    private bool spawningTank = false;
 
     // Start is called before the first frame update
     void Start()
     {
         timer = 0;
-        previousTankSpawnTime = 0;
         StartCoroutine(InstantiatorRoutine());
     }
 
@@ -45,26 +44,26 @@ public class BlockInstantiator: MonoBehaviour
         timer += Time.deltaTime;
         Debug.Log("Timer - " + (int)timer);
 
-        if(((int)timer) == tankSpawnTime && ((int)timer)!=previousTankSpawnTime)
+        if(((int)timer)!= 0 && ((int)timer)%tankTime == 0 && !spawningTank)
         {
-            previousTankSpawnTime = (int)timer;
+            spawningTank = true;
             StartCoroutine(TankInstantiateRoutine());
         }
 
-        if(HighScore.GetScore() > 100 && HighScore.GetScore() < 300 && levelUp)
+        if(HighScore.GetScore() > 200 && HighScore.GetScore() < 750 && levelUp)
         {
             levelUp = false;
-            blockTimer1 *= 1.30f;
-            blockTimer2 *= 1.30f;
-            blockTimer2 *= 1.30f;
+            blockTimer1 = 0.85f;
+            blockTimer2 = 0.48f;
+            blockTimer2 = 0.12f;
         }
 
-        if(HighScore.GetScore() > 300 && !levelUp)
+        if(HighScore.GetScore() > 750 && !levelUp)
         {
             levelUp = true;
-            blockTimer1 *= 1.20f;
-            blockTimer2 *= 1.20f;
-            blockTimer3 *= 1.20f;
+            blockTimer1 = 0.90f;
+            blockTimer2 = 0.55f;
+            blockTimer3 = 0.25f;
         }
     }
 
@@ -106,22 +105,23 @@ public class BlockInstantiator: MonoBehaviour
     IEnumerator TankInstantiateRoutine()
     {
         float R = Random.Range(0.0f, 1.0f);
-        if (R < 0.65)
+        if (R < 0.5)
             pauseGreen = true;
-        if (R > 0.35)
+        if (R >= 0.5)
             pauseRed = true;
-
+        
         yield return new WaitForSeconds(tankSpawnWaitTime);
-        if (R < 0.65)
+        if (R < 0.5)
         {
             Instantiate(tank2);
         }
-        if (R > 0.35)
+        if (R >= 0.50)
         {
             Instantiate(tank);
         }
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(3.5f);
+        spawningTank = false;
         pauseGreen = false;
         pauseRed = false;
     }

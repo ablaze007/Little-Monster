@@ -5,7 +5,7 @@ using UnityEngine;
 public class FireBall : Obstacle
 {
     [SerializeField]
-    private float _speed = 3.5f;
+    private float _speed = 5.0f;
 
     // Start is called before the first frame update
     void Start()

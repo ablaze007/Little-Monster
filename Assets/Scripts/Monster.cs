@@ -35,6 +35,8 @@ public class Monster : MonoBehaviour, IDestroyable
     {
         if(!isDead)
             scoreText.text = "Score - " + HighScore.GetScore();
+        if (Input.GetKeyDown("space"))
+            Jump();
     }
 
     public void Jump()

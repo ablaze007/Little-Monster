@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour, IDestroyable
 {
-    protected float speed = 1.50f;
+    protected float speed = 1.70f;
     [SerializeField]
     protected Vector2 force = new Vector2(100f,100f);
 

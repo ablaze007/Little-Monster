@@ -45,7 +45,10 @@ public class HighScore : MonoBehaviour
 
     public static void AddScore()
     {
-        currentScore++;
+        if (currentScore < 200)
+            currentScore += 2;
+        else
+            currentScore++;
     }
 
     public static int GetScore()

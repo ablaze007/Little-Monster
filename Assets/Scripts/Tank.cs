@@ -10,14 +10,12 @@ public class Tank: MonoBehaviour
 
     private float coolDownTime;
     [SerializeField]
-    protected Transform instantiationPointDown;
-    [SerializeField]
-    protected Transform instantiationPointUp;
+    protected Transform instantiationPoint;
 
     // Start is called before the first frame update
     void Start()
     {
-        coolDownTime = Random.Range(1.25f, 3.75f);
+        coolDownTime = Random.Range(1.75f, 3.0f);
         StartCoroutine(CoolDownRoutine(0.25f));
     }
 
@@ -35,12 +33,7 @@ public class Tank: MonoBehaviour
 
     public virtual Vector3 GetPositionForFireBall()
     {
-        Vector3 position;
-        if (this.transform.localScale.y > 0)
-            position = new Vector2(this.transform.position.x - 0.6f, instantiationPointDown.position.y);
-        else
-            position = new Vector2(this.transform.position.x - 0.6f, instantiationPointUp.position.y);
-        return position;
+            return new Vector2(this.transform.position.x - 0.6f, instantiationPoint.position.y);
     }
 
     IEnumerator CoolDownRoutine(float time)

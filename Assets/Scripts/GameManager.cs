@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
+        Time.timeScale = 1f;
         soundManagerScript.PlaySound("buttonClick");
         SceneManager.LoadScene(0);
     }

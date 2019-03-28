@@ -4,7 +4,7 @@
 Developer - Bhuwan KC <br/>
 First publication - 03.23.2019
 
-Download link for Android - https://drive.google.com/open?id=1tigcTs6FvIXwWJKcZ8Ly4XEfIFzwJfOR
+Download link for Android - https://drive.google.com/open?id=1kCAxx5qVwoXXAXGyto9ek-lGJGrHFzXA
 
 Platforms - Windows & Android <br/>
 Game Engine - Unity <br/>
